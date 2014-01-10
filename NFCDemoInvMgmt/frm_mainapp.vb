@@ -2,9 +2,19 @@
 Imports System.Text.RegularExpressions
 Imports MySql.Data.MySqlClient
 Imports VB = Microsoft.VisualBasic
+Imports System.Runtime.InteropServices
+Imports System.Text
 
 
 Public Class frm_mainapp
+
+    Private Declare Auto Function GetPrivateProfileString Lib "kernel32" (ByVal lpAppName As String, _
+            ByVal lpKeyName As String, _
+            ByVal lpDefault As String, _
+            ByVal lpReturnedString As StringBuilder, _
+            ByVal nSize As Integer, _
+            ByVal lpFileName As String) As Integer
+
     Dim conn As New MySql.Data.MySqlClient.MySqlConnection
     Dim sql As String
     Dim cmd As MySqlCommand
@@ -17,7 +27,9 @@ Public Class frm_mainapp
         Try
             'Dim conn As MySqlConnection
             'conn = New MySqlConnection()
-            conn.ConnectionString = "server=localhost; user id=root; password=ockytika; database=varistha_inv"
+            'conn.ConnectionString = "server=localhost; user id=root; password=ockytika; database=varistha_inv"
+            conn.ConnectionString = get_db_config()
+
             Try
                 conn.Open()
                 Return conn
@@ -409,66 +421,39 @@ a:
 
     End Sub
 
-    Private Sub get_db_config()
-        Dim strFile As String = "database.ini"
-        Dim sr As New StreamReader(strFile)
-        Dim InputString, config As String
-
-        While sr.Peek <> -1
-            InputString = sr.ReadLine()
-            config = checkIfContains(InputString)
-            InputString = String.Empty
-        End While
-        sr.Close()
-        'MsgBox(config)
-    End Sub
-
-    Private Function checkIfContains(ByVal inputString As String) As String
-        Dim m1, m2, m3, m4 As Match
-        Dim server As String = "server=(\S+)"
-        Dim userid As String = "userid=(\S+)"
-        Dim passwd As String = "password=(\S+)"
-        Dim db As String = "database=(\S+)"
-        Dim result As String = ""
-
-        m1 = Regex.Match(inputString, server, _
-                        RegexOptions.IgnoreCase Or RegexOptions.Compiled)
-        m2 = Regex.Match(inputString, userid, _
-                        RegexOptions.IgnoreCase Or RegexOptions.Compiled)
-        m3 = Regex.Match(inputString, passwd, _
-                        RegexOptions.IgnoreCase Or RegexOptions.Compiled)
-        m4 = Regex.Match(inputString, db, _
-                        RegexOptions.IgnoreCase Or RegexOptions.Compiled)
-        Do While m1.Success
-            result = result & m1.Value & ";"
-            m1 = m1.NextMatch()
-        Loop
-        MsgBox(result)
-        Do While m2.Success
-            result = result & m2.Value & ";"
-            m2 = m2.NextMatch()
-        Loop
-        MsgBox(result)
-        Do While m3.Success
-            result = result & m3.Value & ";"
-            m3 = m3.NextMatch()
-        Loop
-        MsgBox(result)
-        Do While m4.Success
-            result = result & m4.Value
-            m4 = m4.NextMatch()
-        Loop
-        MsgBox(result)
-        Return result
-    End Function
-
-    Private Sub Button5_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button5.Click
-        get_db_config()
-
-    End Sub
-
     Private Sub Button6_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button6.Click
         verify_inserted_data()
 
     End Sub
+
+    Private Function get_db_config() As String
+        Dim res As Integer
+        Dim server, userid, passwd, db As StringBuilder
+        Dim strPath, result As String
+        strPath = Application.StartupPath
+
+        result = ""
+        server = New StringBuilder(500)
+        res = GetPrivateProfileString("database", "server", "", server, server.Capacity, strPath & "\database.ini")
+        result = result & "server=" & server.ToString & ";"
+
+        userid = New StringBuilder(500)
+        res = GetPrivateProfileString("database", "userid", "", userid, userid.Capacity, strPath & "\database.ini")
+        result = result & "user id=" & userid.ToString & ";"
+
+        passwd = New StringBuilder(500)
+        res = GetPrivateProfileString("database", "password", "", passwd, passwd.Capacity, strPath & "\database.ini")
+        result = result & "password=" & passwd.ToString & ";"
+
+        db = New StringBuilder(500)
+        res = GetPrivateProfileString("database", "database", "", db, db.Capacity, strPath & "\database.ini")
+        result = result & "database=" & db.ToString
+
+        Return result
+        'MsgBox("GetPrivateProfileStrng returned : " & res.ToString())
+        'MsgBox("KeyName is : " & sb.ToString())
+        'Console.WriteLine("GetPrivateProfileStrng returned : " & res.ToString())
+        'Console.WriteLine("KeyName is : " & sb.ToString())
+        'Console.ReadLine();
+    End Function
 End Class

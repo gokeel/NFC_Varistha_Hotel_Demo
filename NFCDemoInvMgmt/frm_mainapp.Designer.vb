@@ -26,6 +26,7 @@ Partial Class frm_mainapp
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.tp_add_asset = New System.Windows.Forms.TabPage()
+        Me.Button6 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.tb_vendor_1 = New System.Windows.Forms.TextBox()
@@ -65,8 +66,6 @@ Partial Class frm_mainapp
         Me.status_label_nfc = New System.Windows.Forms.ToolStripStatusLabel()
         Me.status_label_db = New System.Windows.Forms.ToolStripStatusLabel()
         Me.rtb_verifydata = New System.Windows.Forms.RichTextBox()
-        Me.Button5 = New System.Windows.Forms.Button()
-        Me.Button6 = New System.Windows.Forms.Button()
         Me.TabControl1.SuspendLayout()
         Me.tp_add_asset.SuspendLayout()
         Me.tp_find_asset.SuspendLayout()
@@ -133,6 +132,15 @@ Partial Class frm_mainapp
         Me.tp_add_asset.TabIndex = 0
         Me.tp_add_asset.Text = "Add Asset"
         Me.tp_add_asset.UseVisualStyleBackColor = True
+        '
+        'Button6
+        '
+        Me.Button6.Location = New System.Drawing.Point(500, 267)
+        Me.Button6.Name = "Button6"
+        Me.Button6.Size = New System.Drawing.Size(111, 51)
+        Me.Button6.TabIndex = 14
+        Me.Button6.Text = "Verify Data"
+        Me.Button6.UseVisualStyleBackColor = True
         '
         'Button2
         '
@@ -473,30 +481,11 @@ Partial Class frm_mainapp
         Me.rtb_verifydata.TabIndex = 6
         Me.rtb_verifydata.Text = ""
         '
-        'Button5
-        '
-        Me.Button5.Location = New System.Drawing.Point(64, 96)
-        Me.Button5.Name = "Button5"
-        Me.Button5.Size = New System.Drawing.Size(75, 23)
-        Me.Button5.TabIndex = 7
-        Me.Button5.Text = "Button5"
-        Me.Button5.UseVisualStyleBackColor = True
-        '
-        'Button6
-        '
-        Me.Button6.Location = New System.Drawing.Point(500, 267)
-        Me.Button6.Name = "Button6"
-        Me.Button6.Size = New System.Drawing.Size(111, 51)
-        Me.Button6.TabIndex = 14
-        Me.Button6.Text = "Verify Data"
-        Me.Button6.UseVisualStyleBackColor = True
-        '
         'frm_mainapp
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(939, 508)
-        Me.Controls.Add(Me.Button5)
         Me.Controls.Add(Me.rtb_verifydata)
         Me.Controls.Add(Me.status_label)
         Me.Controls.Add(Me.TabControl1)
@@ -563,6 +552,5 @@ Partial Class frm_mainapp
     Friend WithEvents status_label_nfc As System.Windows.Forms.ToolStripStatusLabel
     Friend WithEvents status_label_db As System.Windows.Forms.ToolStripStatusLabel
     Friend WithEvents rtb_verifydata As System.Windows.Forms.RichTextBox
-    Friend WithEvents Button5 As System.Windows.Forms.Button
     Friend WithEvents Button6 As System.Windows.Forms.Button
 End Class
