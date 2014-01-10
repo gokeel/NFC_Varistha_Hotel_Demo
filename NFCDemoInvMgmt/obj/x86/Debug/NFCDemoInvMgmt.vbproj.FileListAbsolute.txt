@@ -11,4 +11,4 @@ C:\Users\eockhar\Documents\Private\olala\Varistha Hotel\Inventory management\fir
 C:\Users\eockhar\Documents\Private\olala\Varistha Hotel\Inventory management\firstdemo\NFCDemoInvMgmt\NFCDemoInvMgmt\obj\x86\Debug\NFCDemoInvMgmt.pdb
 C:\Users\eockhar\Documents\Private\olala\Varistha Hotel\Inventory management\firstdemo\NFCDemoInvMgmt\NFCDemoInvMgmt\obj\x86\Debug\NFCDemoInvMgmt.frm_mainapp.resources
 C:\Users\eockhar\Documents\Private\olala\Varistha Hotel\Inventory management\firstdemo\NFCDemoInvMgmt\NFCDemoInvMgmt\bin\Debug\MySql.Data.dll
-C:\Users\eockhar\Documents\Private\olala\Varistha Hotel\Inventory management\firstdemo\NFCDemoInvMgmt\NFCDemoInvMgmt\obj\x86\Debug\NFCDemoInvMgmt.GlobalVariables.resources
+C:\Users\eockhar\Documents\Private\olala\Varistha Hotel\Inventory management\firstdemo\NFCDemoInvMgmt\NFCDemoInvMgmt\obj\x86\Debug\NFCDemoInvMgmt.frm_login.resources

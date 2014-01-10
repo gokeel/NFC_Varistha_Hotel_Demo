@@ -1,7 +1,7 @@
-﻿Public Class GlobalVariables
-    Public Shared Port As Integer = 2
-    Public Shared Baudrate As Integer = 115200
-End Class
+﻿'Public Class GlobalVariables
+'Public Shared Port As Integer = 2
+'Public Shared Baudrate As Integer = 115200
+'End Class
 
 Public Class frm_login
 

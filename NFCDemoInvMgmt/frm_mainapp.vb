@@ -95,8 +95,10 @@ a:
         Dim b1 As Byte
         Dim s1 As String
 
-        port = GlobalVariables.Port
-        baud = GlobalVariables.Baudrate
+        port = get_comport_config("port")
+        MsgBox(port.ToString)
+        baud = get_comport_config("baudrate")
+        MsgBox(baud.ToString)
         'Open Port
         i = rf_init_com(port, baud)
         If (i <> 0) Then
@@ -434,19 +436,19 @@ a:
 
         result = ""
         server = New StringBuilder(500)
-        res = GetPrivateProfileString("database", "server", "", server, server.Capacity, strPath & "\database.ini")
+        res = GetPrivateProfileString("database", "server", "", server, server.Capacity, strPath & "\config.ini")
         result = result & "server=" & server.ToString & ";"
 
         userid = New StringBuilder(500)
-        res = GetPrivateProfileString("database", "userid", "", userid, userid.Capacity, strPath & "\database.ini")
+        res = GetPrivateProfileString("database", "userid", "", userid, userid.Capacity, strPath & "\config.ini")
         result = result & "user id=" & userid.ToString & ";"
 
         passwd = New StringBuilder(500)
-        res = GetPrivateProfileString("database", "password", "", passwd, passwd.Capacity, strPath & "\database.ini")
+        res = GetPrivateProfileString("database", "password", "", passwd, passwd.Capacity, strPath & "\config.ini")
         result = result & "password=" & passwd.ToString & ";"
 
         db = New StringBuilder(500)
-        res = GetPrivateProfileString("database", "database", "", db, db.Capacity, strPath & "\database.ini")
+        res = GetPrivateProfileString("database", "database", "", db, db.Capacity, strPath & "\config.ini")
         result = result & "database=" & db.ToString
 
         Return result
@@ -456,4 +458,20 @@ a:
         'Console.WriteLine("KeyName is : " & sb.ToString())
         'Console.ReadLine();
     End Function
+
+    Private Function get_comport_config(ByVal par As String) As Integer
+        Dim res As Integer
+        Dim param As StringBuilder
+        Dim strPath As String
+        Dim result As Integer
+
+        strPath = Application.StartupPath
+
+        param = New StringBuilder(500)
+        res = GetPrivateProfileString("comport", par, "", param, param.Capacity, strPath & "\config.ini")
+        result = Convert.ToInt32(param.ToString)
+        Return result
+
+    End Function
+
 End Class
