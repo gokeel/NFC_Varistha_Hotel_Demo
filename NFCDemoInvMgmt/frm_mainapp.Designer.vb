@@ -66,6 +66,7 @@ Partial Class frm_mainapp
         Me.status_label_db = New System.Windows.Forms.ToolStripStatusLabel()
         Me.rtb_verifydata = New System.Windows.Forms.RichTextBox()
         Me.Button5 = New System.Windows.Forms.Button()
+        Me.Button6 = New System.Windows.Forms.Button()
         Me.TabControl1.SuspendLayout()
         Me.tp_add_asset.SuspendLayout()
         Me.tp_find_asset.SuspendLayout()
@@ -110,6 +111,7 @@ Partial Class frm_mainapp
         '
         'tp_add_asset
         '
+        Me.tp_add_asset.Controls.Add(Me.Button6)
         Me.tp_add_asset.Controls.Add(Me.Button2)
         Me.tp_add_asset.Controls.Add(Me.Button1)
         Me.tp_add_asset.Controls.Add(Me.tb_vendor_1)
@@ -480,6 +482,15 @@ Partial Class frm_mainapp
         Me.Button5.Text = "Button5"
         Me.Button5.UseVisualStyleBackColor = True
         '
+        'Button6
+        '
+        Me.Button6.Location = New System.Drawing.Point(500, 267)
+        Me.Button6.Name = "Button6"
+        Me.Button6.Size = New System.Drawing.Size(111, 51)
+        Me.Button6.TabIndex = 14
+        Me.Button6.Text = "Verify Data"
+        Me.Button6.UseVisualStyleBackColor = True
+        '
         'frm_mainapp
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -553,4 +564,5 @@ Partial Class frm_mainapp
     Friend WithEvents status_label_db As System.Windows.Forms.ToolStripStatusLabel
     Friend WithEvents rtb_verifydata As System.Windows.Forms.RichTextBox
     Friend WithEvents Button5 As System.Windows.Forms.Button
+    Friend WithEvents Button6 As System.Windows.Forms.Button
 End Class

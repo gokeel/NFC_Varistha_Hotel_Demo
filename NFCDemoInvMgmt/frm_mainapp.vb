@@ -214,6 +214,7 @@ a:
             Exit Sub
         End If
         fix_hex = m_no_hex & add_F
+        read_uuid()
         write_block(block, fix_hex)
     End Sub
 
@@ -272,11 +273,14 @@ a:
 
     Sub verify_inserted_data()
         ' 1: asset id, 2: asset name, 4: asset type, 5: asset model, 6: asset purchase, 8: asset vendor
-        Dim all_data As String
-        Dim a_id, a_name, a_type, a_model, a_purchase, a_vendor As String
+        'Dim all_data As String
+        'Dim a_id, a_name, a_type, a_model, a_purchase, a_vendor As String
 
-        rtb_verifydata.AppendText("--------------------------")
-        rtb_verifydata.AppendText("--------------------------")
+        read_uuid()
+
+        rtb_verifydata.AppendText("--------------------------" & Environment.NewLine)
+        rtb_verifydata.AppendText("VERIFY RESULT" & Environment.NewLine)
+        rtb_verifydata.AppendText("--------------------------" & Environment.NewLine)
         rtb_verifydata.AppendText(read_data_human("Asset id: ", 1) & Environment.NewLine)
         rtb_verifydata.AppendText(read_data_human("Asset name: ", 2) & Environment.NewLine)
         rtb_verifydata.AppendText(read_data_human("Asset type: ", 4) & Environment.NewLine)
@@ -356,7 +360,7 @@ a:
             cmd.ExecuteNonQuery()
             status_label_db.Text = "Data inserted into database."
             conn.Close()
-
+            Button1.Enabled = False
         Catch myerror As MySqlException
             MsgBox(myerror)
             conn.Close()
@@ -401,6 +405,8 @@ a:
         Write_Data("", a_vendor, 8)
 
         clear_textbox("add")
+        Button1.Enabled = True
+
     End Sub
 
     Private Sub get_db_config()
@@ -458,6 +464,11 @@ a:
 
     Private Sub Button5_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button5.Click
         get_db_config()
+
+    End Sub
+
+    Private Sub Button6_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button6.Click
+        verify_inserted_data()
 
     End Sub
 End Class
