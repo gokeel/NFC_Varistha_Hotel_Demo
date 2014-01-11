@@ -96,9 +96,7 @@ a:
         Dim s1 As String
 
         port = get_comport_config("port")
-        MsgBox(port.ToString)
         baud = get_comport_config("baudrate")
-        MsgBox(baud.ToString)
         'Open Port
         i = rf_init_com(port, baud)
         If (i <> 0) Then
@@ -377,7 +375,6 @@ a:
             Button1.Enabled = False
         Catch myerror As MySqlException
             MsgBox(myerror)
-            conn.Close()
             GoTo a
         End Try
 a:
