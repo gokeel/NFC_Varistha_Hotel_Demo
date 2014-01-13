@@ -20,9 +20,6 @@ Public Class frm_mainapp
     Dim cmd As MySqlCommand
     Dim rs As MySqlDataReader
 
-    Private Sub tp_add_asset_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tp_add_asset.Click
-
-    End Sub
     Public Function conn_mysql() As MySqlConnection
         Try
             'Dim conn As MySqlConnection
@@ -34,7 +31,7 @@ Public Class frm_mainapp
                 conn.Open()
                 Return conn
             Catch myerror As MySqlException
-                MsgBox("Connection to the Database Failed")
+                MsgBox("Connection to the Database Failed - " & myerror.Message)
                 GoTo a
             End Try
 
@@ -65,13 +62,13 @@ a:
 a:
     End Sub
 
+    Private Sub tp_add_asset_Enter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tp_add_asset.Enter
+        rtb_verifydata.Visible = True
+    End Sub
+
     Private Sub tp_all_assets_Enter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tp_all_assets.Enter
         retriveDataToDataGrid(grid_assets)
 
-    End Sub
-
-    Private Sub TabControl1_Enter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TabControl1.Enter
-        retriveDataToDataGrid(grid_assets_2)
     End Sub
 
     Sub Check_Numeric_Textbox(ByVal tb As TextBox)
@@ -283,28 +280,37 @@ a:
         Exit Function
     End Function
 
-    Sub verify_inserted_data()
+    Sub verify_inserted_data(ByVal output As String)
         ' 1: asset id, 2: asset name, 4: asset type, 5: asset model, 6: asset purchase, 8: asset vendor
         'Dim all_data As String
         'Dim a_id, a_name, a_type, a_model, a_purchase, a_vendor As String
-
+        clear_textbox("find")
         read_uuid()
-
-        rtb_verifydata.AppendText("--------------------------" & Environment.NewLine)
-        rtb_verifydata.AppendText("VERIFY RESULT" & Environment.NewLine)
-        rtb_verifydata.AppendText("--------------------------" & Environment.NewLine)
-        rtb_verifydata.AppendText(read_data_human("Asset id: ", 1) & Environment.NewLine)
-        rtb_verifydata.AppendText(read_data_human("Asset name: ", 2) & Environment.NewLine)
-        rtb_verifydata.AppendText(read_data_human("Asset type: ", 4) & Environment.NewLine)
-        rtb_verifydata.AppendText(read_data_human("Asset model: ", 5) & Environment.NewLine)
-        rtb_verifydata.AppendText(read_data_human("Purchase year: ", 6) & Environment.NewLine)
-        rtb_verifydata.AppendText(read_data_human("Vendor: ", 8) & Environment.NewLine)
+        If output = "rtb" Then
+            rtb_verifydata.AppendText("--------------------------" & Environment.NewLine)
+            rtb_verifydata.AppendText("VERIFY RESULT" & Environment.NewLine)
+            rtb_verifydata.AppendText("--------------------------" & Environment.NewLine)
+            rtb_verifydata.AppendText("Asset id: " & read_data_human(1) & Environment.NewLine)
+            rtb_verifydata.AppendText("Asset name: " & read_data_human(2) & Environment.NewLine)
+            rtb_verifydata.AppendText("Asset type: " & read_data_human(4) & Environment.NewLine)
+            rtb_verifydata.AppendText("Asset model: " & read_data_human(5) & Environment.NewLine)
+            rtb_verifydata.AppendText("Purchase year: " & read_data_human(6) & Environment.NewLine)
+            rtb_verifydata.AppendText("Vendor: " & read_data_human(8) & Environment.NewLine)
+        ElseIf output = "textbox" Then
+            tb_asset_id_2.Text = read_data_human(1)
+            tb_asset_name_2.Text = read_data_human(2)
+            tb_asset_type_1.Text = read_data_human(4)
+            tb_asset_model_1.Text = read_data_human(5)
+            tb_purchase_year_2.Text = read_data_human(6)
+            tb_vendor_2.Text = read_data_human(8)
+        End If
+        
 
         rf_halt(0)
         'lb_log.Items.Add("Comport is closed.")
     End Sub
 
-    Function read_data_human(ByVal field As String, ByVal block As Integer) As String
+    Function read_data_human(ByVal block As Integer) As String
         Dim result, in_human, in_convert As String
         Dim indexChar As Integer = 0
 
@@ -318,7 +324,7 @@ a:
             in_human = in_convert
         End If
 
-        result = field & in_human
+        result = in_human
 
         Return result
     End Function
@@ -374,7 +380,7 @@ a:
             conn.Close()
             Button1.Enabled = False
         Catch myerror As MySqlException
-            MsgBox(myerror)
+            MsgBox(myerror.Message)
             GoTo a
         End Try
 a:
@@ -420,8 +426,9 @@ a:
 
     End Sub
 
-    Private Sub Button6_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button6.Click
-        verify_inserted_data()
+    Private Sub Button6_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_verify_data.Click
+        rtb_verifydata.Clear()
+        verify_inserted_data("rtb")
 
     End Sub
 
@@ -470,5 +477,15 @@ a:
         Return result
 
     End Function
+
+    
+    Private Sub tp_find_asset_Enter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tp_find_asset.Enter
+        rtb_verifydata.Visible = False
+    End Sub
+
+    
+    Private Sub btn_scan_tag_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_scan_tag.Click
+        verify_inserted_data("textbox")
+    End Sub
 
 End Class

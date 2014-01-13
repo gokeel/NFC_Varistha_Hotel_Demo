@@ -26,7 +26,7 @@ Partial Class frm_mainapp
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.tp_add_asset = New System.Windows.Forms.TabPage()
-        Me.Button6 = New System.Windows.Forms.Button()
+        Me.btn_verify_data = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.tb_vendor_1 = New System.Windows.Forms.TextBox()
@@ -42,8 +42,7 @@ Partial Class frm_mainapp
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.tp_find_asset = New System.Windows.Forms.TabPage()
-        Me.Button3 = New System.Windows.Forms.Button()
-        Me.Button4 = New System.Windows.Forms.Button()
+        Me.btn_scan_tag = New System.Windows.Forms.Button()
         Me.tb_vendor_2 = New System.Windows.Forms.TextBox()
         Me.tb_purchase_year_2 = New System.Windows.Forms.TextBox()
         Me.tb_asset_model_2 = New System.Windows.Forms.TextBox()
@@ -58,10 +57,6 @@ Partial Class frm_mainapp
         Me.Label14 = New System.Windows.Forms.Label()
         Me.tp_all_assets = New System.Windows.Forms.TabPage()
         Me.grid_assets = New System.Windows.Forms.DataGridView()
-        Me.tp_update_asset = New System.Windows.Forms.TabPage()
-        Me.btn_delete = New System.Windows.Forms.Button()
-        Me.btn_update = New System.Windows.Forms.Button()
-        Me.grid_assets_2 = New System.Windows.Forms.DataGridView()
         Me.status_label = New System.Windows.Forms.StatusStrip()
         Me.status_label_nfc = New System.Windows.Forms.ToolStripStatusLabel()
         Me.status_label_db = New System.Windows.Forms.ToolStripStatusLabel()
@@ -71,8 +66,6 @@ Partial Class frm_mainapp
         Me.tp_find_asset.SuspendLayout()
         Me.tp_all_assets.SuspendLayout()
         CType(Me.grid_assets, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.tp_update_asset.SuspendLayout()
-        CType(Me.grid_assets_2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.status_label.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -101,8 +94,7 @@ Partial Class frm_mainapp
         Me.TabControl1.Controls.Add(Me.tp_add_asset)
         Me.TabControl1.Controls.Add(Me.tp_find_asset)
         Me.TabControl1.Controls.Add(Me.tp_all_assets)
-        Me.TabControl1.Controls.Add(Me.tp_update_asset)
-        Me.TabControl1.Location = New System.Drawing.Point(55, 140)
+        Me.TabControl1.Location = New System.Drawing.Point(57, 140)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
         Me.TabControl1.Size = New System.Drawing.Size(678, 350)
@@ -110,7 +102,7 @@ Partial Class frm_mainapp
         '
         'tp_add_asset
         '
-        Me.tp_add_asset.Controls.Add(Me.Button6)
+        Me.tp_add_asset.Controls.Add(Me.btn_verify_data)
         Me.tp_add_asset.Controls.Add(Me.Button2)
         Me.tp_add_asset.Controls.Add(Me.Button1)
         Me.tp_add_asset.Controls.Add(Me.tb_vendor_1)
@@ -133,14 +125,14 @@ Partial Class frm_mainapp
         Me.tp_add_asset.Text = "Add Asset"
         Me.tp_add_asset.UseVisualStyleBackColor = True
         '
-        'Button6
+        'btn_verify_data
         '
-        Me.Button6.Location = New System.Drawing.Point(500, 267)
-        Me.Button6.Name = "Button6"
-        Me.Button6.Size = New System.Drawing.Size(111, 51)
-        Me.Button6.TabIndex = 14
-        Me.Button6.Text = "Verify Data"
-        Me.Button6.UseVisualStyleBackColor = True
+        Me.btn_verify_data.Location = New System.Drawing.Point(500, 267)
+        Me.btn_verify_data.Name = "btn_verify_data"
+        Me.btn_verify_data.Size = New System.Drawing.Size(111, 51)
+        Me.btn_verify_data.TabIndex = 14
+        Me.btn_verify_data.Text = "Verify Data"
+        Me.btn_verify_data.UseVisualStyleBackColor = True
         '
         'Button2
         '
@@ -258,8 +250,7 @@ Partial Class frm_mainapp
         '
         'tp_find_asset
         '
-        Me.tp_find_asset.Controls.Add(Me.Button3)
-        Me.tp_find_asset.Controls.Add(Me.Button4)
+        Me.tp_find_asset.Controls.Add(Me.btn_scan_tag)
         Me.tp_find_asset.Controls.Add(Me.tb_vendor_2)
         Me.tp_find_asset.Controls.Add(Me.tb_purchase_year_2)
         Me.tp_find_asset.Controls.Add(Me.tb_asset_model_2)
@@ -280,23 +271,14 @@ Partial Class frm_mainapp
         Me.tp_find_asset.Text = "Find Assets"
         Me.tp_find_asset.UseVisualStyleBackColor = True
         '
-        'Button3
+        'btn_scan_tag
         '
-        Me.Button3.Location = New System.Drawing.Point(391, 253)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(111, 51)
-        Me.Button3.TabIndex = 27
-        Me.Button3.Text = "Send Data to NFC Tag"
-        Me.Button3.UseVisualStyleBackColor = True
-        '
-        'Button4
-        '
-        Me.Button4.Location = New System.Drawing.Point(261, 253)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(111, 51)
-        Me.Button4.TabIndex = 26
-        Me.Button4.Text = "Register Asset to Database"
-        Me.Button4.UseVisualStyleBackColor = True
+        Me.btn_scan_tag.Location = New System.Drawing.Point(505, 253)
+        Me.btn_scan_tag.Name = "btn_scan_tag"
+        Me.btn_scan_tag.Size = New System.Drawing.Size(111, 51)
+        Me.btn_scan_tag.TabIndex = 27
+        Me.btn_scan_tag.Text = "Scan Tag"
+        Me.btn_scan_tag.UseVisualStyleBackColor = True
         '
         'tb_vendor_2
         '
@@ -416,45 +398,6 @@ Partial Class frm_mainapp
         Me.grid_assets.Size = New System.Drawing.Size(675, 301)
         Me.grid_assets.TabIndex = 0
         '
-        'tp_update_asset
-        '
-        Me.tp_update_asset.Controls.Add(Me.btn_delete)
-        Me.tp_update_asset.Controls.Add(Me.btn_update)
-        Me.tp_update_asset.Controls.Add(Me.grid_assets_2)
-        Me.tp_update_asset.Location = New System.Drawing.Point(4, 22)
-        Me.tp_update_asset.Name = "tp_update_asset"
-        Me.tp_update_asset.Size = New System.Drawing.Size(670, 324)
-        Me.tp_update_asset.TabIndex = 3
-        Me.tp_update_asset.Text = "Update Asset"
-        Me.tp_update_asset.UseVisualStyleBackColor = True
-        '
-        'btn_delete
-        '
-        Me.btn_delete.Location = New System.Drawing.Point(151, 292)
-        Me.btn_delete.Name = "btn_delete"
-        Me.btn_delete.Size = New System.Drawing.Size(110, 22)
-        Me.btn_delete.TabIndex = 2
-        Me.btn_delete.Text = "Delete"
-        Me.btn_delete.UseVisualStyleBackColor = True
-        '
-        'btn_update
-        '
-        Me.btn_update.Location = New System.Drawing.Point(24, 292)
-        Me.btn_update.Name = "btn_update"
-        Me.btn_update.Size = New System.Drawing.Size(110, 22)
-        Me.btn_update.TabIndex = 1
-        Me.btn_update.Text = "Update"
-        Me.btn_update.UseVisualStyleBackColor = True
-        '
-        'grid_assets_2
-        '
-        Me.grid_assets_2.BackgroundColor = System.Drawing.SystemColors.ButtonFace
-        Me.grid_assets_2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.grid_assets_2.Location = New System.Drawing.Point(14, 15)
-        Me.grid_assets_2.Name = "grid_assets_2"
-        Me.grid_assets_2.Size = New System.Drawing.Size(676, 274)
-        Me.grid_assets_2.TabIndex = 0
-        '
         'status_label
         '
         Me.status_label.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.status_label_nfc, Me.status_label_db})
@@ -501,8 +444,6 @@ Partial Class frm_mainapp
         Me.tp_find_asset.PerformLayout()
         Me.tp_all_assets.ResumeLayout(False)
         CType(Me.grid_assets, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.tp_update_asset.ResumeLayout(False)
-        CType(Me.grid_assets_2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.status_label.ResumeLayout(False)
         Me.status_label.PerformLayout()
         Me.ResumeLayout(False)
@@ -515,7 +456,6 @@ Partial Class frm_mainapp
     Friend WithEvents tp_add_asset As System.Windows.Forms.TabPage
     Friend WithEvents tp_find_asset As System.Windows.Forms.TabPage
     Friend WithEvents tp_all_assets As System.Windows.Forms.TabPage
-    Friend WithEvents tp_update_asset As System.Windows.Forms.TabPage
     Friend WithEvents Button2 As System.Windows.Forms.Button
     Friend WithEvents Button1 As System.Windows.Forms.Button
     Friend WithEvents tb_vendor_1 As System.Windows.Forms.TextBox
@@ -530,8 +470,7 @@ Partial Class frm_mainapp
     Friend WithEvents Label5 As System.Windows.Forms.Label
     Friend WithEvents Label4 As System.Windows.Forms.Label
     Friend WithEvents Label3 As System.Windows.Forms.Label
-    Friend WithEvents Button3 As System.Windows.Forms.Button
-    Friend WithEvents Button4 As System.Windows.Forms.Button
+    Friend WithEvents btn_scan_tag As System.Windows.Forms.Button
     Friend WithEvents tb_vendor_2 As System.Windows.Forms.TextBox
     Friend WithEvents tb_purchase_year_2 As System.Windows.Forms.TextBox
     Friend WithEvents tb_asset_model_2 As System.Windows.Forms.TextBox
@@ -545,12 +484,9 @@ Partial Class frm_mainapp
     Friend WithEvents Label13 As System.Windows.Forms.Label
     Friend WithEvents Label14 As System.Windows.Forms.Label
     Friend WithEvents grid_assets As System.Windows.Forms.DataGridView
-    Friend WithEvents btn_delete As System.Windows.Forms.Button
-    Friend WithEvents btn_update As System.Windows.Forms.Button
-    Friend WithEvents grid_assets_2 As System.Windows.Forms.DataGridView
     Friend WithEvents status_label As System.Windows.Forms.StatusStrip
     Friend WithEvents status_label_nfc As System.Windows.Forms.ToolStripStatusLabel
     Friend WithEvents status_label_db As System.Windows.Forms.ToolStripStatusLabel
     Friend WithEvents rtb_verifydata As System.Windows.Forms.RichTextBox
-    Friend WithEvents Button6 As System.Windows.Forms.Button
+    Friend WithEvents btn_verify_data As System.Windows.Forms.Button
 End Class
